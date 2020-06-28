@@ -1,0 +1,37 @@
+{% extends "base_layout.html" %}
+
+{% block title %}Create a room{% endblock %}
+
+{% block main %}
+
+<div class="jumbotron">
+    <div class="container">
+        <div class== about="row">
+            <div class="col">
+                <h3>Create a new chat room</h3>
+
+
+                <form role="form" action="{{ url_for('new_room') }}" method="POST">
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="form-control-label">Room name</label><br>
+                            <input name="name" type="text" class="form-control" id="name" autofocus
+                                   placeholder="give your room a unique name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Room description</label><br>
+                            <input type="text" name="description" class="form-control" id="description">
+                            <small class="form-text text-muted">room description is optional.</small>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+</html>

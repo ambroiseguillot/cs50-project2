@@ -1,0 +1,94 @@
+{% extends "base_layout.html" %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block main %}
+<br>
+
+<!-- Contents to display after logged in -->
+<div id="display">
+    <div class="row" style="width: 100%;">
+        <div class="col-lg-3">
+            <div class="jumbotron">
+
+                <!--go to the channel creation page -->
+                <div class="row">
+                    <a role="button" class="btn btn-secondary btn-lg active" href="/create_room">Create new room</a>
+                </div>
+
+                               <div class="row">
+                                   <br>
+                </div>
+
+                <!--special touch: optional notification sound for incoming messages -->
+                <div class="row">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" checked=checked class="custom-control-input" id="notificationSound">
+                        <label class="custom-control-label" for="notificationSound">Play notification sound</label>
+                    </div>
+                </div>
+
+                <hr>
+
+                <!-- Channel list -->
+                <div class="row">
+                    <label>Channel list:</label>
+                </div>
+                <div class="row">
+                    <div id="container" class="channels">
+                        <div id="channels" style="max-height: 293px;">
+                            {% for channel in channels %}
+                            <div class="row" style="text-align: left;">
+
+                                <img style="padding-left: 13px" src="static/img/bootstrap icons/caret-right-fill.svg"><button class="btn btn-link" data-channel="{{ channel }}">{{ channel }}</button>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Chat section -->
+        <div class="col-lg-9">
+            <div id="chat" style="height: 99.7%; display: block;">
+
+                <!-- Channel Name on top -->
+                <div class="jumbotron" style="padding: 0.5%; padding-left: 20px; margin-left: -20px;">
+                    <div class="row">
+                    <h2 id="channel_name"></h2>
+                        </div>
+                    <div class="row" id="channel_details_area">
+                    <img style="float:left; padding-right: 5px;vertical-align: middle;" src="static/img/bootstrap icons/info-circle.svg">
+                    <h5 id="channel_details"></h5>
+                </div>
+                </div>
+
+                <!-- Message section -->
+                <div class="container messages" id="chatbox">
+                    <div id="messages"></div>
+                </div>
+
+                <!-- Form to send messages -->
+                <div class="jumbotron jumbotron3">
+                    <form class="form-inline" id="send_message_form">
+                        <div class="form-group" style="width: 90%;">
+                            <textarea type="text" id="message" class="form-control" autocomplete="off"
+                                      placeholder="Type a message..." style="width: 98.7%;" autofocus></textarea>
+                        </div>
+                        <button type="submit" id="sendbutton" class="btn btn-primary" style="width: 10%;" >Send</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<audio id="newMsgSound"
+       src="static/mp3/for-sure.mp3">
+</audio>
+
+{% endblock %}
